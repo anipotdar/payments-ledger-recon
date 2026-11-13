@@ -1,0 +1,23 @@
+# Generated data never goes in git. Regenerate it from the seed.
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Databricks
+.databricks/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

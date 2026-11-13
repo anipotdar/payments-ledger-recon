@@ -1,0 +1,16 @@
+# Databricks Asset Bundle. Deploy with:
+#   databricks bundle validate
+#   databricks bundle deploy -t dev
+# Set your workspace URL below, or export DATABRICKS_HOST.
+bundle:
+  name: payments-ledger-recon
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://YOUR-WORKSPACE.cloud.databricks.com

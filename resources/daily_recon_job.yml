@@ -1,0 +1,22 @@
+# Daily job. Tasks are added as each layer is built; serverless compute is used
+# because no cluster is specified (the only option on Free Edition).
+resources:
+  jobs:
+    daily_recon:
+      name: ledger-recon-daily
+      max_concurrent_runs: 1
+      tasks:
+        - task_key: setup
+          notebook_task:
+            notebook_path: ../pipelines/00_setup.sql
+
+        - task_key: bronze_processor_events
+          depends_on:
+            - task_key: setup
+          notebook_task:
+            notebook_path: ../pipelines/bronze/processor_events.py
+
+        # weekend 1: bronze_bank_statements, bronze_merchant_snapshots, bronze_fx_rates
+        # weekend 2: silver_events, silver_merchants_scd2, ledger_post
+        # weekend 3: recon_match, recon_breaks
+        # weekend 4: gold_trial_balance
